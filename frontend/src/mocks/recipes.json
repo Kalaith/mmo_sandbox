@@ -1,0 +1,32 @@
+[
+  {
+    "id": "iron_sword",
+    "name": "Iron Sword",
+    "stationId": "forge",
+    "ingredients": [
+      { "itemId": "iron_ingot", "quantity": 2 },
+      { "itemId": "wood", "quantity": 1 }
+    ],
+    "result": { "itemId": "iron_sword", "quantity": 1 }
+  },
+  {
+    "id": "healing_potion",
+    "name": "Healing Potion",
+    "stationId": "alchemy",
+    "ingredients": [
+      { "itemId": "herb", "quantity": 3 },
+      { "itemId": "water", "quantity": 1 }
+    ],
+    "result": { "itemId": "healing_potion", "quantity": 1 }
+  },
+  {
+    "id": "wooden_shield",
+    "name": "Wooden Shield",
+    "stationId": "workbench",
+    "ingredients": [
+      { "itemId": "wood", "quantity": 4 },
+      { "itemId": "iron_ingot", "quantity": 1 }
+    ],
+    "result": { "itemId": "wooden_shield", "quantity": 1 }
+  }
+]

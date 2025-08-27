@@ -1,0 +1,5 @@
+[
+  { "id": "a1", "name": "Order of the Phoenix", "status": "allied" },
+  { "id": "a2", "name": "Shadow Syndicate", "status": "pending" },
+  { "id": "a3", "name": "Dragon Riders", "status": "requested" }
+]

@@ -1,0 +1,5 @@
+[
+  { "id": "l1", "item": "Iron Sword", "seller": "Arthur", "price": 100, "quantity": 2 },
+  { "id": "l2", "item": "Healing Potion", "seller": "Guinevere", "price": 25, "quantity": 10 },
+  { "id": "l3", "item": "Wooden Shield", "seller": "Lancelot", "price": 60, "quantity": 3 }
+]

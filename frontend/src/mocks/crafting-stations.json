@@ -1,0 +1,5 @@
+[
+  { "id": "forge", "name": "Forge" },
+  { "id": "alchemy", "name": "Alchemy Table" },
+  { "id": "workbench", "name": "Workbench" }
+]

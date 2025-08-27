@@ -1,0 +1,6 @@
+[
+  { "itemId": "iron_ingot", "name": "Iron Ingot", "quantity": 5 },
+  { "itemId": "wood", "name": "Wood", "quantity": 10 },
+  { "itemId": "herb", "name": "Herb", "quantity": 6 },
+  { "itemId": "water", "name": "Water", "quantity": 2 }
+]

@@ -1,0 +1,4 @@
+[
+  { "id": "climb", "name": "Climb the Peaks", "description": "Reach the highest summits." },
+  { "id": "mine", "name": "Mine for Ores", "description": "Extract valuable minerals from caves." }
+]

@@ -1,0 +1,6 @@
+[
+  { "id": "1", "name": "Arthur", "role": "Leader", "online": true },
+  { "id": "2", "name": "Lancelot", "role": "Officer", "online": false },
+  { "id": "3", "name": "Guinevere", "role": "Member", "online": true },
+  { "id": "4", "name": "Gawain", "role": "Member", "online": false }
+]

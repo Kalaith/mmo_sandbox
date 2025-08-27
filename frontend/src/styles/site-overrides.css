@@ -1,0 +1,83 @@
+:root {
+  --primary: #2563eb;
+  --bg: #f3f4f6;
+  --text: #222;
+  --accent: #f59e42;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+.bg-primary-contrast {
+  background-color: #fff !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
+}
+.text-primary {
+  color: var(--primary) !important;
+}
+.text-default {
+  color: var(--text) !important;
+}
+.border-primary {
+  border-color: var(--primary) !important;
+}
+
+input, select, textarea, button {
+  color: var(--text);
+  background: #fff;
+}
+
+button, .btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background 0.2s, color 0.2s;
+}
+button:hover, .btn:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
+.btn-invert {
+  background: #fff;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+.btn-invert:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.card, .dashboard-section, .project, .project-card {
+  background: #fff;
+  color: var(--text);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+}
+
+a {
+  color: var(--primary);
+}
+a:hover {
+  color: var(--accent);
+}
+
+/* Utility for white backgrounds */
+.bg-white {
+  background: #fff !important;
+  color: var(--text) !important;
+}
