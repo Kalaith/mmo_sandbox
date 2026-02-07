@@ -103,5 +103,7 @@ Key components:
 
 ## License
 
-This project is private and proprietary.</content>
+This project is licensed under the MIT License - see the individual component README files for details.
+
+Part of the WebHatchery game collection.</content>
 <parameter name="filePath">h:\WebHatchery\game_apps\mmo_sandbox\README.md
