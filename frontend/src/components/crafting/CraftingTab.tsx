@@ -72,7 +72,7 @@ const CraftingTab: React.FC = () => {
       await craft(recipeId);
       const inv = await getInventory();
       setInventory(inv);
-    } catch (e) {
+    } catch {
       // Optionally show error to user
     }
   };

@@ -14,7 +14,7 @@ import activitiesForest from '../mocks/region-activities-forest.json';
 import activitiesMountains from '../mocks/region-activities-mountains.json';
 import marketListings from '../mocks/market-listings.json';
 
-let inventory = [...inventoryData];
+const inventory = [...inventoryData];
 
 export async function getCraftingStations() {
   return craftingStations;
@@ -43,7 +43,7 @@ export async function craft(recipeId: string) {
     const invItem = inventory.find(i => i.itemId === ing.itemId);
     if (invItem) invItem.quantity -= ing.quantity;
   });
-  let resultItem = inventory.find(i => i.itemId === recipe.result.itemId);
+  const resultItem = inventory.find(i => i.itemId === recipe.result.itemId);
   if (resultItem) {
     resultItem.quantity += recipe.result.quantity;
   } else {
