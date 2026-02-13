@@ -1,5 +1,5 @@
-import React from 'react';
-import type { Station } from './CraftingTab';
+import React from "react";
+import type { Station } from "./CraftingTab";
 
 interface Props {
   stations: Station[];
@@ -7,14 +7,18 @@ interface Props {
   onSelect: (id: string) => void;
 }
 
-const CraftingStationsList: React.FC<Props> = ({ stations, selectedStation, onSelect }) => (
+const CraftingStationsList: React.FC<Props> = ({
+  stations,
+  selectedStation,
+  onSelect,
+}) => (
   <div>
     <h2 className="text-lg font-bold mb-2">Crafting Stations</h2>
     <ul className="space-y-2">
-      {stations.map(station => (
+      {stations.map((station) => (
         <li key={station.id}>
           <button
-            className={`w-full px-2 py-1 rounded ${selectedStation === station.id ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            className={`w-full px-2 py-1 rounded ${selectedStation === station.id ? "bg-blue-500 text-white" : "bg-gray-200"}`}
             onClick={() => onSelect(station.id)}
           >
             {station.name}

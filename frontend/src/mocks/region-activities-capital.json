@@ -1,4 +1,12 @@
 [
-  { "id": "market", "name": "Visit the Market", "description": "Trade goods and meet merchants." },
-  { "id": "arena", "name": "Enter the Arena", "description": "Test your skills in combat." }
+  {
+    "id": "market",
+    "name": "Visit the Market",
+    "description": "Trade goods and meet merchants."
+  },
+  {
+    "id": "arena",
+    "name": "Enter the Arena",
+    "description": "Test your skills in combat."
+  }
 ]

@@ -1,5 +1,17 @@
 [
-  { "id": "capital", "name": "Capital City", "description": "The bustling heart of the realm." },
-  { "id": "forest", "name": "Enchanted Forest", "description": "A mysterious woodland full of magic." },
-  { "id": "mountains", "name": "Frostpeak Mountains", "description": "Snowy peaks and hidden caves." }
+  {
+    "id": "capital",
+    "name": "Capital City",
+    "description": "The bustling heart of the realm."
+  },
+  {
+    "id": "forest",
+    "name": "Enchanted Forest",
+    "description": "A mysterious woodland full of magic."
+  },
+  {
+    "id": "mountains",
+    "name": "Frostpeak Mountains",
+    "description": "Snowy peaks and hidden caves."
+  }
 ]

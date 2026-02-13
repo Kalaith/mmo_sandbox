@@ -1,4 +1,12 @@
 [
-  { "id": "explore", "name": "Explore the Woods", "description": "Discover magical creatures and plants." },
-  { "id": "hunt", "name": "Hunt for Game", "description": "Track and hunt wild animals." }
+  {
+    "id": "explore",
+    "name": "Explore the Woods",
+    "description": "Discover magical creatures and plants."
+  },
+  {
+    "id": "hunt",
+    "name": "Hunt for Game",
+    "description": "Track and hunt wild animals."
+  }
 ]

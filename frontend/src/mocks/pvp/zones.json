@@ -1,5 +1,17 @@
 [
-  { "id": "arena", "name": "Grand Arena", "description": "A massive coliseum for ranked battles." },
-  { "id": "forest", "name": "Shadow Forest", "description": "A dark, dangerous woodland for open PvP." },
-  { "id": "ruins", "name": "Ancient Ruins", "description": "Crumbling ruins with hidden traps and treasures." }
+  {
+    "id": "arena",
+    "name": "Grand Arena",
+    "description": "A massive coliseum for ranked battles."
+  },
+  {
+    "id": "forest",
+    "name": "Shadow Forest",
+    "description": "A dark, dangerous woodland for open PvP."
+  },
+  {
+    "id": "ruins",
+    "name": "Ancient Ruins",
+    "description": "Crumbling ruins with hidden traps and treasures."
+  }
 ]

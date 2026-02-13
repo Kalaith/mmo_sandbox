@@ -1,5 +1,5 @@
-import React from 'react';
-import type { Region } from './WorldMapTab';
+import React from "react";
+import type { Region } from "./WorldMapTab";
 
 interface Props {
   region: Region | null;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface MarketItemProps {
   item: string;
@@ -9,9 +9,16 @@ interface MarketItemProps {
   selected?: boolean;
 }
 
-const MarketItem: React.FC<MarketItemProps> = ({ item, price, quantity, seller, onClick, selected }) => (
+const MarketItem: React.FC<MarketItemProps> = ({
+  item,
+  price,
+  quantity,
+  seller,
+  onClick,
+  selected,
+}) => (
   <button
-    className={`w-full px-2 py-1 rounded text-left ${selected ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+    className={`w-full px-2 py-1 rounded text-left ${selected ? "bg-blue-500 text-white" : "bg-gray-200"}`}
     onClick={onClick}
   >
     {quantity}x {item} - {price}g (Seller: {seller})

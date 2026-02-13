@@ -1,5 +1,5 @@
-import React from 'react';
-import type { InventoryItem } from './InventoryGrid';
+import React from "react";
+import type { InventoryItem } from "./InventoryGrid";
 
 interface InventorySlotProps {
   item: InventoryItem;

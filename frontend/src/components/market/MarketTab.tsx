@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getMarketListings } from '../../api/handlers';
-import MarketSearch from './MarketSearch';
-import MarketListings from './MarketListings';
-import MarketBuySell from './MarketBuySell';
+import React, { useEffect, useState } from "react";
+import { getMarketListings } from "../../api/handlers";
+import MarketSearch from "./MarketSearch";
+import MarketListings from "./MarketListings";
+import MarketBuySell from "./MarketBuySell";
 
 export interface Listing {
   id: string;
@@ -13,7 +13,7 @@ export interface Listing {
 }
 
 const MarketTab: React.FC = () => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [listings, setListings] = useState<Listing[]>([]);
   const [selectedListing, setSelectedListing] = useState<Listing | null>(null);
 
@@ -29,7 +29,11 @@ const MarketTab: React.FC = () => {
         <MarketSearch search={search} setSearch={setSearch} />
       </div>
       <div className="w-full md:w-2/4">
-        <MarketListings listings={listings} onSelect={setSelectedListing} selectedListing={selectedListing} />
+        <MarketListings
+          listings={listings}
+          onSelect={setSelectedListing}
+          selectedListing={selectedListing}
+        />
       </div>
       <div className="w-full md:w-1/4">
         <MarketBuySell listing={selectedListing} />

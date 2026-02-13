@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface RecipeItemProps {
   name: string;
@@ -8,7 +8,7 @@ interface RecipeItemProps {
 
 const RecipeItem: React.FC<RecipeItemProps> = ({ name, selected, onClick }) => (
   <button
-    className={`w-full px-2 py-1 rounded ${selected ? 'bg-green-500 text-white' : 'bg-gray-200'}`}
+    className={`w-full px-2 py-1 rounded ${selected ? "bg-green-500 text-white" : "bg-gray-200"}`}
     onClick={onClick}
   >
     {name}

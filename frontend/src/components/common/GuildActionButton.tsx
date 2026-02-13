@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface GuildActionButtonProps {
   action: string;
@@ -6,7 +6,11 @@ interface GuildActionButtonProps {
   disabled?: boolean;
 }
 
-const GuildActionButton: React.FC<GuildActionButtonProps> = ({ action, onClick, disabled }) => (
+const GuildActionButton: React.FC<GuildActionButtonProps> = ({
+  action,
+  onClick,
+  disabled,
+}) => (
   <button
     className="px-3 py-1 bg-green-600 text-white rounded disabled:bg-gray-400"
     onClick={onClick}

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import MapView from './MapView';
-import RegionsList from './RegionsList';
-import CurrentLocation from './CurrentLocation';
-import RegionActivities from './RegionActivities';
-import TravelButton from './TravelButton';
+import React, { useEffect, useState } from "react";
+import MapView from "./MapView";
+import RegionsList from "./RegionsList";
+import CurrentLocation from "./CurrentLocation";
+import RegionActivities from "./RegionActivities";
+import TravelButton from "./TravelButton";
 import {
   getRegions,
   getCurrentRegion,
   getRegionActivities,
-  travel
-} from '../../api/handlers';
+  travel,
+} from "../../api/handlers";
 
 export interface Region {
   id: string;
@@ -29,8 +29,12 @@ const WorldMapTab: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
 
   useEffect(() => {
-    getRegions().then(setRegions).catch(() => setRegions([]));
-    getCurrentRegion().then(setCurrentRegion).catch(() => setCurrentRegion(null));
+    getRegions()
+      .then(setRegions)
+      .catch(() => setRegions([]));
+    getCurrentRegion()
+      .then(setCurrentRegion)
+      .catch(() => setCurrentRegion(null));
   }, []);
 
   useEffect(() => {
@@ -45,7 +49,7 @@ const WorldMapTab: React.FC = () => {
     try {
       const data = await travel(regionId);
       if (data.success) {
-        const newRegion = regions.find(r => r.id === regionId) || null;
+        const newRegion = regions.find((r) => r.id === regionId) || null;
         setCurrentRegion(newRegion);
       }
     } catch {
@@ -56,12 +60,24 @@ const WorldMapTab: React.FC = () => {
   return (
     <div className="flex flex-col md:flex-row gap-4 p-4">
       <div className="w-full md:w-1/4">
-        <MapView regions={regions} currentRegion={currentRegion} onSelect={setCurrentRegion} />
-        <RegionsList regions={regions} currentRegion={currentRegion} onSelect={setCurrentRegion} />
+        <MapView
+          regions={regions}
+          currentRegion={currentRegion}
+          onSelect={setCurrentRegion}
+        />
+        <RegionsList
+          regions={regions}
+          currentRegion={currentRegion}
+          onSelect={setCurrentRegion}
+        />
       </div>
       <div className="w-full md:w-1/4">
         <CurrentLocation region={currentRegion} />
-        <TravelButton regions={regions} currentRegion={currentRegion} onTravel={handleTravel} />
+        <TravelButton
+          regions={regions}
+          currentRegion={currentRegion}
+          onTravel={handleTravel}
+        />
       </div>
       <div className="w-full md:w-2/4">
         <RegionActivities activities={activities} />

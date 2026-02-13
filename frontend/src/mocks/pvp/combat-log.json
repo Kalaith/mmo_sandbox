@@ -1,5 +1,17 @@
 [
-  { "id": "1", "timestamp": "2025-06-24T10:00:00Z", "message": "You defeated PlayerX in the Grand Arena." },
-  { "id": "2", "timestamp": "2025-06-24T09:45:00Z", "message": "You were defeated by PlayerY in Shadow Forest." },
-  { "id": "3", "timestamp": "2025-06-24T09:30:00Z", "message": "You found a hidden trap in Ancient Ruins." }
+  {
+    "id": "1",
+    "timestamp": "2025-06-24T10:00:00Z",
+    "message": "You defeated PlayerX in the Grand Arena."
+  },
+  {
+    "id": "2",
+    "timestamp": "2025-06-24T09:45:00Z",
+    "message": "You were defeated by PlayerY in Shadow Forest."
+  },
+  {
+    "id": "3",
+    "timestamp": "2025-06-24T09:30:00Z",
+    "message": "You found a hidden trap in Ancient Ruins."
+  }
 ]

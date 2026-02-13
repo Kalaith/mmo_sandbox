@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface PvPZoneButtonProps {
   name: string;
@@ -6,9 +6,13 @@ interface PvPZoneButtonProps {
   onClick: () => void;
 }
 
-const PvPZoneButton: React.FC<PvPZoneButtonProps> = ({ name, selected, onClick }) => (
+const PvPZoneButton: React.FC<PvPZoneButtonProps> = ({
+  name,
+  selected,
+  onClick,
+}) => (
   <button
-    className={`px-2 py-1 rounded ${selected ? 'bg-red-500 text-white' : 'bg-gray-200'}`}
+    className={`px-2 py-1 rounded ${selected ? "bg-red-500 text-white" : "bg-gray-200"}`}
     onClick={onClick}
   >
     {name}

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import CraftingStationsList from './CraftingStationsList';
-import RecipeList from './RecipeList';
-import CraftingPanel from './CraftingPanel';
-import InventoryPanel from './InventoryPanel';
+import React, { useEffect, useState } from "react";
+import CraftingStationsList from "./CraftingStationsList";
+import RecipeList from "./RecipeList";
+import CraftingPanel from "./CraftingPanel";
+import InventoryPanel from "./InventoryPanel";
 import {
   getCraftingStations,
   getRecipes,
   getInventory,
-  craft
-} from '../../api/handlers';
+  craft,
+} from "../../api/handlers";
 
 export interface Station {
   id: string;
@@ -40,13 +40,13 @@ const CraftingTab: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     getCraftingStations()
-      .then(data => {
+      .then((data) => {
         setStations(data);
         if (data.length > 0) setSelectedStation(data[0].id);
       })
       .catch(() => setStations([]));
     getInventory()
-      .then(data => setInventory(data))
+      .then((data) => setInventory(data))
       .catch(() => setInventory([]));
     setLoading(false);
   }, []);
@@ -55,7 +55,7 @@ const CraftingTab: React.FC = () => {
     if (selectedStation) {
       setLoading(true);
       getRecipes(selectedStation)
-        .then(data => {
+        .then((data) => {
           setRecipes(data);
           setSelectedRecipe(data.length > 0 ? data[0] : null);
         })
@@ -80,13 +80,26 @@ const CraftingTab: React.FC = () => {
   return (
     <div className="flex flex-col md:flex-row gap-4 p-4">
       <div className="w-full md:w-1/4">
-        <CraftingStationsList stations={stations} selectedStation={selectedStation} onSelect={setSelectedStation} />
+        <CraftingStationsList
+          stations={stations}
+          selectedStation={selectedStation}
+          onSelect={setSelectedStation}
+        />
       </div>
       <div className="w-full md:w-1/4">
-        <RecipeList recipes={recipes} selectedRecipe={selectedRecipe} onSelect={setSelectedRecipe} loading={loading} />
+        <RecipeList
+          recipes={recipes}
+          selectedRecipe={selectedRecipe}
+          onSelect={setSelectedRecipe}
+          loading={loading}
+        />
       </div>
       <div className="w-full md:w-1/4">
-        <CraftingPanel recipe={selectedRecipe} inventory={inventory} onCraft={handleCraft} />
+        <CraftingPanel
+          recipe={selectedRecipe}
+          inventory={inventory}
+          onCraft={handleCraft}
+        />
       </div>
       <div className="w-full md:w-1/4">
         <InventoryPanel inventory={inventory} />

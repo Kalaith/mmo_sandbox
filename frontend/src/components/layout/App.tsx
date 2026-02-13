@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import CharacterCreationModal from './CharacterCreationModal';
-import GameInterface from './GameInterface';
+import React, { useState, useEffect } from "react";
+import CharacterCreationModal from "./CharacterCreationModal";
+import GameInterface from "./GameInterface";
 
 const App: React.FC = () => {
   const [characterCreated, setCharacterCreated] = useState(false);
-  const [characterName, setCharacterName] = useState('');
+  const [characterName, setCharacterName] = useState("");
 
   useEffect(() => {
-    const savedName = localStorage.getItem('characterName');
+    const savedName = localStorage.getItem("characterName");
     if (savedName) {
       setCharacterName(savedName);
       setCharacterCreated(true);
@@ -21,7 +21,7 @@ const App: React.FC = () => {
           onCreate={(name: string) => {
             setCharacterName(name);
             setCharacterCreated(true);
-            localStorage.setItem('characterName', name);
+            localStorage.setItem("characterName", name);
           }}
         />
       ) : (

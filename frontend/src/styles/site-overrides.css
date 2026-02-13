@@ -29,12 +29,16 @@ body {
   border-color: var(--primary) !important;
 }
 
-input, select, textarea, button {
+input,
+select,
+textarea,
+button {
   color: var(--text);
   background: #fff;
 }
 
-button, .btn {
+button,
+.btn {
   background-color: var(--primary);
   color: #fff;
   border: 1px solid var(--primary);
@@ -42,9 +46,12 @@ button, .btn {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
-button:hover, .btn:hover {
+button:hover,
+.btn:hover {
   background-color: var(--accent);
   color: #fff;
 }
@@ -58,14 +65,22 @@ button:hover, .btn:hover {
   color: #fff;
 }
 
-.card, .dashboard-section, .project, .project-card {
+.card,
+.dashboard-section,
+.project,
+.project-card {
   background: #fff;
   color: var(--text);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--text);
 }
 

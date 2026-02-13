@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import SkillCategoryButton from '../common/SkillCategoryButton';
-import SkillItem from '../common/SkillItem';
+import React, { useState } from "react";
+import SkillCategoryButton from "../common/SkillCategoryButton";
+import SkillItem from "../common/SkillItem";
 
 interface Skill {
   name: string;
@@ -21,48 +21,50 @@ interface SkillsTabProps {
 
 const defaultCategories: SkillCategory[] = [
   {
-    name: 'Combat',
-    color: '#ff6b6b',
+    name: "Combat",
+    color: "#ff6b6b",
     skills: [
-      { name: 'Melee Combat', level: 5, xp: 40, maxXp: 100 },
-      { name: 'Ranged Combat', level: 3, xp: 20, maxXp: 80 },
-      { name: 'Magic', level: 2, xp: 10, maxXp: 60 },
-      { name: 'Defense', level: 4, xp: 30, maxXp: 90 },
+      { name: "Melee Combat", level: 5, xp: 40, maxXp: 100 },
+      { name: "Ranged Combat", level: 3, xp: 20, maxXp: 80 },
+      { name: "Magic", level: 2, xp: 10, maxXp: 60 },
+      { name: "Defense", level: 4, xp: 30, maxXp: 90 },
     ],
   },
   {
-    name: 'Crafting',
-    color: '#4ecdc4',
+    name: "Crafting",
+    color: "#4ecdc4",
     skills: [
-      { name: 'Smithing', level: 6, xp: 60, maxXp: 120 },
-      { name: 'Alchemy', level: 2, xp: 15, maxXp: 50 },
-      { name: 'Tailoring', level: 1, xp: 5, maxXp: 40 },
-      { name: 'Enchanting', level: 0, xp: 0, maxXp: 30 },
+      { name: "Smithing", level: 6, xp: 60, maxXp: 120 },
+      { name: "Alchemy", level: 2, xp: 15, maxXp: 50 },
+      { name: "Tailoring", level: 1, xp: 5, maxXp: 40 },
+      { name: "Enchanting", level: 0, xp: 0, maxXp: 30 },
     ],
   },
   {
-    name: 'Gathering',
-    color: '#45b7d1',
+    name: "Gathering",
+    color: "#45b7d1",
     skills: [
-      { name: 'Mining', level: 3, xp: 25, maxXp: 70 },
-      { name: 'Herbalism', level: 2, xp: 10, maxXp: 50 },
-      { name: 'Fishing', level: 1, xp: 5, maxXp: 40 },
-      { name: 'Hunting', level: 2, xp: 12, maxXp: 45 },
+      { name: "Mining", level: 3, xp: 25, maxXp: 70 },
+      { name: "Herbalism", level: 2, xp: 10, maxXp: 50 },
+      { name: "Fishing", level: 1, xp: 5, maxXp: 40 },
+      { name: "Hunting", level: 2, xp: 12, maxXp: 45 },
     ],
   },
   {
-    name: 'Social',
-    color: '#96ceb4',
+    name: "Social",
+    color: "#96ceb4",
     skills: [
-      { name: 'Leadership', level: 1, xp: 5, maxXp: 30 },
-      { name: 'Trading', level: 2, xp: 10, maxXp: 40 },
-      { name: 'Diplomacy', level: 0, xp: 0, maxXp: 20 },
-      { name: 'Guild Management', level: 0, xp: 0, maxXp: 20 },
+      { name: "Leadership", level: 1, xp: 5, maxXp: 30 },
+      { name: "Trading", level: 2, xp: 10, maxXp: 40 },
+      { name: "Diplomacy", level: 0, xp: 0, maxXp: 20 },
+      { name: "Guild Management", level: 0, xp: 0, maxXp: 20 },
     ],
   },
 ];
 
-const SkillsTab: React.FC<SkillsTabProps> = ({ categories = defaultCategories }) => {
+const SkillsTab: React.FC<SkillsTabProps> = ({
+  categories = defaultCategories,
+}) => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   return (
