@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface SkillCategoryButtonProps {
   name: string;
@@ -14,7 +14,7 @@ const SkillCategoryButton: React.FC<SkillCategoryButtonProps> = ({
   onClick,
 }) => (
   <button
-    className={`px-2 py-1 rounded ${active ? "bg-purple-500 text-white" : "bg-gray-200"}`}
+    className={`px-2 py-1 rounded ${active ? 'bg-purple-500 text-white' : 'bg-gray-200'}`}
     style={color ? { borderLeft: `4px solid ${color}` } : {}}
     onClick={onClick}
   >

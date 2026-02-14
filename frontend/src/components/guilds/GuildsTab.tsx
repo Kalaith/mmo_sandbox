@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
-import GuildStatus from "./GuildStatus";
-import GuildManagement from "./GuildManagement";
-import GuildMembers from "./GuildMembers";
-import GuildActions from "./GuildActions";
-import GuildAlliances from "./GuildAlliances";
-import {
-  getGuild,
-  getGuildMembers,
-  getGuildAlliances,
-} from "../../api/handlers";
+import React, { useEffect, useState } from 'react';
+import GuildStatus from './GuildStatus';
+import GuildManagement from './GuildManagement';
+import GuildMembers from './GuildMembers';
+import GuildActions from './GuildActions';
+import GuildAlliances from './GuildAlliances';
+import { getGuild, getGuildMembers, getGuildAlliances } from '../../api/handlers';
 
 export interface Guild {
   id: string;
@@ -27,7 +23,7 @@ export interface GuildMember {
 export interface Alliance {
   id: string;
   name: string;
-  status: "allied" | "pending" | "requested";
+  status: 'allied' | 'pending' | 'requested';
 }
 
 const GuildsTab: React.FC = () => {
@@ -43,11 +39,7 @@ const GuildsTab: React.FC = () => {
       .then(setMembers)
       .catch(() => setMembers([]));
     getGuildAlliances()
-      .then((data) =>
-        setAlliances(
-          data.map((a) => ({ ...a, status: a.status as Alliance["status"] })),
-        ),
-      )
+      .then(data => setAlliances(data.map(a => ({ ...a, status: a.status as Alliance['status'] }))))
 
       .catch(() => setAlliances([]));
   }, []);

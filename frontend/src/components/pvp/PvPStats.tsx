@@ -1,5 +1,5 @@
-import React from "react";
-import type { PvPStatsType } from "./PvPTab";
+import React from 'react';
+import type { PvPStatsType } from './PvPTab';
 
 interface Props {
   stats: PvPStatsType | null;

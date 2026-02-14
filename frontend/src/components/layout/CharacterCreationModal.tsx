@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 interface CharacterCreationModalProps {
   onCreate: (name: string) => void;
 }
 
-const CharacterCreationModal: React.FC<CharacterCreationModalProps> = ({
-  onCreate,
-}) => {
-  const [name, setName] = useState("");
+const CharacterCreationModal: React.FC<CharacterCreationModalProps> = ({ onCreate }) => {
+  const [name, setName] = useState('');
 
   useEffect(() => {
-    const savedName = localStorage.getItem("characterName");
+    const savedName = localStorage.getItem('characterName');
     if (savedName) setName(savedName);
   }, []);
 
   const handleCreate = () => {
     if (name) {
       onCreate(name);
-      localStorage.setItem("characterName", name);
+      localStorage.setItem('characterName', name);
     }
   };
 
@@ -26,10 +24,7 @@ const CharacterCreationModal: React.FC<CharacterCreationModalProps> = ({
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4">Create Your Character</h2>
         <div className="mb-4">
-          <label
-            htmlFor="character-name"
-            className="block text-sm font-medium mb-1"
-          >
+          <label htmlFor="character-name" className="block text-sm font-medium mb-1">
             Character Name
           </label>
           <input
@@ -38,7 +33,7 @@ const CharacterCreationModal: React.FC<CharacterCreationModalProps> = ({
             className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="Enter your character name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
           />
         </div>
         <button

@@ -1,7 +1,7 @@
-import React from "react";
-import ActivityFeed from "../common/ActivityFeed";
-import type { ActivityEntry } from "../common/ActivityFeed";
-import StatCard from "../common/StatCard";
+import React from 'react';
+import ActivityFeed from '../common/ActivityFeed';
+import type { ActivityEntry } from '../common/ActivityFeed';
+import StatCard from '../common/StatCard';
 
 interface DashboardTabProps {
   activities?: ActivityEntry[];
@@ -10,18 +10,18 @@ interface DashboardTabProps {
 }
 
 const defaultActivities: ActivityEntry[] = [
-  { id: "1", timestamp: "2025-06-24 10:00", message: "Welcome to the game!" },
+  { id: '1', timestamp: '2025-06-24 10:00', message: 'Welcome to the game!' },
   {
-    id: "2",
-    timestamp: "2025-06-24 10:05",
-    message: "You joined the Knights of the Round.",
+    id: '2',
+    timestamp: '2025-06-24 10:05',
+    message: 'You joined the Knights of the Round.',
   },
 ];
 
 const defaultStats = [
-  { stat: "Level", value: 10, icon: "⭐" },
-  { stat: "Gold", value: 1000, icon: "💰" },
-  { stat: "Energy", value: 100, icon: "⚡" },
+  { stat: 'Level', value: 10, icon: '⭐' },
+  { stat: 'Gold', value: 1000, icon: '💰' },
+  { stat: 'Energy', value: 100, icon: '⚡' },
 ];
 
 const DashboardTab: React.FC<DashboardTabProps> = ({
@@ -49,10 +49,7 @@ const DashboardTab: React.FC<DashboardTabProps> = ({
             <div className="text-gray-400 text-sm">No current events.</div>
           ) : (
             events.map((event, idx) => (
-              <div
-                key={idx}
-                className="event-item text-sm p-2 bg-surface rounded shadow"
-              >
+              <div key={idx} className="event-item text-sm p-2 bg-surface rounded shadow">
                 {event}
               </div>
             ))

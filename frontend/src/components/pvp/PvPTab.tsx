@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import PvPZones from "./PvPZones";
-import PvPStats from "./PvPStats";
-import CombatSimulator from "./CombatSimulator";
-import CombatLog from "./CombatLog";
-import CombatActions from "./CombatActions";
-import { getPvpZones, getPvpStats, getCombatLog } from "../../api/handlers";
+import React, { useEffect, useState } from 'react';
+import PvPZones from './PvPZones';
+import PvPStats from './PvPStats';
+import CombatSimulator from './CombatSimulator';
+import CombatLog from './CombatLog';
+import CombatActions from './CombatActions';
+import { getPvpZones, getPvpStats, getCombatLog } from '../../api/handlers';
 
 export interface PvPZone {
   id: string;
@@ -45,11 +45,7 @@ const PvPTab: React.FC = () => {
   return (
     <div className="flex flex-col md:flex-row gap-4 p-4">
       <div className="w-full md:w-1/5">
-        <PvPZones
-          zones={zones}
-          selectedZone={selectedZone}
-          onSelect={setSelectedZone}
-        />
+        <PvPZones zones={zones} selectedZone={selectedZone} onSelect={setSelectedZone} />
       </div>
       <div className="w-full md:w-1/5">
         <PvPStats stats={stats} />

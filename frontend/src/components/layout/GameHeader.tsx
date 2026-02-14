@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface GameHeaderProps {
   characterName: string;
@@ -18,7 +18,7 @@ const GameHeader: React.FC<GameHeaderProps> = ({
       <div className="avatar-placeholder text-3xl">👤</div>
       <div>
         <h3 className="text-lg font-bold" id="character-display-name">
-          {characterName || "Adventurer"}
+          {characterName || 'Adventurer'}
         </h3>
       </div>
     </div>

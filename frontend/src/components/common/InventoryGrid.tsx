@@ -1,5 +1,5 @@
-import React from "react";
-import InventorySlot from "./InventorySlot";
+import React from 'react';
+import InventorySlot from './InventorySlot';
 
 export interface InventoryItem {
   id: string;
@@ -12,12 +12,9 @@ interface InventoryGridProps {
   columns?: number;
 }
 
-const InventoryGrid: React.FC<InventoryGridProps> = ({
-  items,
-  columns = 5,
-}) => (
+const InventoryGrid: React.FC<InventoryGridProps> = ({ items, columns = 5 }) => (
   <div className={`grid grid-cols-${columns} gap-2`}>
-    {items.map((item) => (
+    {items.map(item => (
       <InventorySlot key={item.id} item={item} />
     ))}
   </div>

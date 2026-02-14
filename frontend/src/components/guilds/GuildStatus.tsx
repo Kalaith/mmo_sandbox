@@ -1,5 +1,5 @@
-import React from "react";
-import type { Guild } from "./GuildsTab";
+import React from 'react';
+import type { Guild } from './GuildsTab';
 
 interface Props {
   guild: Guild | null;
