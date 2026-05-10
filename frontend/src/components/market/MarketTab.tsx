@@ -17,10 +17,17 @@ const MarketTab: React.FC = () => {
   const [listings, setListings] = useState<Listing[]>([]);
   const [selectedListing, setSelectedListing] = useState<Listing | null>(null);
 
-  useEffect(() => {
+  const loadListings = () => {
     getMarketListings(search)
-      .then(setListings)
+      .then(data => {
+        setListings(data);
+        setSelectedListing(current => data.find(listing => listing.id === current?.id) ?? null);
+      })
       .catch(() => setListings([]));
+  };
+
+  useEffect(() => {
+    loadListings();
   }, [search]);
 
   return (
@@ -36,7 +43,7 @@ const MarketTab: React.FC = () => {
         />
       </div>
       <div className="w-full md:w-1/4">
-        <MarketBuySell listing={selectedListing} />
+        <MarketBuySell listing={selectedListing} onComplete={loadListings} />
       </div>
     </div>
   );

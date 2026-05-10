@@ -4,24 +4,20 @@ import { marketBuy } from '../../api/handlers';
 
 interface Props {
   listing: Listing | null;
+  onComplete?: () => void;
 }
 
-const MarketBuySell: React.FC<Props> = ({ listing }) => {
+const MarketBuySell: React.FC<Props> = ({ listing, onComplete }) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleBuy = async () => {
     if (!listing) return;
     try {
       await marketBuy(listing.id, quantity);
-      // Optionally show success message
+      onComplete?.();
     } catch {
       // Optionally show error message
     }
-  };
-
-  const handleSell = () => {
-    // Implement sell logic or open a sell form/modal
-    alert('Sell functionality not implemented in mock.');
   };
 
   return (
@@ -42,9 +38,6 @@ const MarketBuySell: React.FC<Props> = ({ listing }) => {
           />
           <button className="px-3 py-1 bg-green-600 text-white rounded mr-2" onClick={handleBuy}>
             Buy
-          </button>
-          <button className="px-3 py-1 bg-yellow-600 text-white rounded" onClick={handleSell}>
-            Sell
           </button>
         </div>
       ) : (

@@ -1,119 +1,235 @@
-import craftingStations from '../mocks/crafting-stations.json';
-import recipes from '../mocks/recipes.json';
-import inventoryData from '../mocks/inventory.json';
-import pvpZones from '../mocks/pvp/zones.json';
-import pvpStats from '../mocks/pvp/stats.json';
-import combatLog from '../mocks/pvp/combat-log.json';
-import guild from '../mocks/guild.json';
-import guildMembers from '../mocks/guild-members.json';
-import guildAlliances from '../mocks/guild-alliances.json';
-import regions from '../mocks/regions.json';
-import currentRegion from '../mocks/current-region.json';
-import activitiesCapital from '../mocks/region-activities-capital.json';
-import activitiesForest from '../mocks/region-activities-forest.json';
-import activitiesMountains from '../mocks/region-activities-mountains.json';
-import marketListings from '../mocks/market-listings.json';
+import { webhatcheryGameApi, type WebHatcheryGameState } from './webhatcheryGameApi';
+import { useWebHatcherySessionStore } from '../stores/webhatcherySessionStore';
 
-const inventory = [...inventoryData];
-
-export async function getCraftingStations() {
-  return craftingStations;
+export interface Station {
+  id: string;
+  name: string;
 }
 
-export async function getRecipes(stationId?: string) {
-  if (stationId) {
-    return recipes.filter(r => r.stationId === stationId);
+export interface Recipe {
+  id: string;
+  name: string;
+  stationId: string;
+  ingredients: { itemId: string; quantity: number }[];
+  result: { itemId: string; quantity: number };
+}
+
+export interface InventoryItem {
+  itemId: string;
+  name: string;
+  quantity: number;
+}
+
+export interface PvPZone {
+  id: string;
+  name: string;
+  description: string;
+}
+
+export interface PvPStats {
+  kills: number;
+  deaths: number;
+  rating: number;
+}
+
+export interface LogEntry {
+  id: string;
+  timestamp: string;
+  message: string;
+}
+
+export interface Guild {
+  id: string;
+  name: string;
+  level: number;
+  description: string;
+}
+
+export interface GuildMember {
+  id: string;
+  name: string;
+  role: string;
+  online: boolean;
+}
+
+export interface Alliance {
+  id: string;
+  name: string;
+  status: 'allied' | 'pending' | 'requested';
+}
+
+export interface Region {
+  id: string;
+  name: string;
+  description: string;
+}
+
+export interface Activity {
+  id: string;
+  name: string;
+  description: string;
+}
+
+export interface Listing {
+  id: string;
+  item: string;
+  seller: string;
+  price: number;
+  quantity: number;
+}
+
+export interface Skill {
+  name: string;
+  level: number;
+  xp: number;
+  maxXp: number;
+}
+
+export interface SkillCategory {
+  name: string;
+  color?: string;
+  skills: Skill[];
+}
+
+export interface MmoProfile {
+  character: {
+    created: boolean;
+    name: string;
+  };
+  resources: {
+    gold: number;
+    energy: number;
+    skillPoints: number;
+    level: number;
+  };
+  attributes: { name: string; value: number }[];
+  equipment: { slot: string; item?: string }[];
+  activities: LogEntry[];
+  events: string[];
+  skills: SkillCategory[];
+}
+
+let backendSession: Promise<WebHatcheryGameState> | null = null;
+
+const ensureBackendSession = async (): Promise<WebHatcheryGameState> => {
+  const session = useWebHatcherySessionStore.getState();
+  if (session.gameState) {
+    return session.gameState;
   }
-  return recipes;
+
+  backendSession ??= session.loadGame().catch(() => session.continueAsGuest());
+  return backendSession;
+};
+
+const getContent = async <T>(resource: string, params: Record<string, string | number> = {}): Promise<T> => {
+  await ensureBackendSession();
+  return webhatcheryGameApi.getContent<T>(resource, params);
+};
+
+const applyIntent = async (
+  intent: string,
+  payload: Record<string, unknown> = {},
+): Promise<WebHatcheryGameState> => {
+  await ensureBackendSession();
+  const gameState = await webhatcheryGameApi.applyIntent(intent, payload);
+  useWebHatcherySessionStore.setState({ gameState, user: gameState.user });
+  return gameState;
+};
+
+export async function getProfile(): Promise<MmoProfile> {
+  return getContent<MmoProfile>('profile');
 }
 
-export async function getInventory() {
-  return inventory;
+export async function createCharacter(name: string): Promise<MmoProfile> {
+  await applyIntent('create_character', { name });
+  return getProfile();
 }
 
-export async function craft(recipeId: string) {
-  const recipe = recipes.find(r => r.id === recipeId);
-  if (!recipe) throw new Error('Recipe not found');
-  const canCraft = recipe.ingredients.every(ing => {
-    const invItem = inventory.find(i => i.itemId === ing.itemId);
-    return invItem && invItem.quantity >= ing.quantity;
-  });
-  if (!canCraft) throw new Error('Not enough ingredients');
-  recipe.ingredients.forEach(ing => {
-    const invItem = inventory.find(i => i.itemId === ing.itemId);
-    if (invItem) invItem.quantity -= ing.quantity;
-  });
-  const resultItem = inventory.find(i => i.itemId === recipe.result.itemId);
-  if (resultItem) {
-    resultItem.quantity += recipe.result.quantity;
-  } else {
-    inventory.push({
-      itemId: recipe.result.itemId,
-      name: recipe.result.itemId,
-      quantity: recipe.result.quantity,
-    });
-  }
+export async function getCraftingStations(): Promise<Station[]> {
+  return getContent<Station[]>('crafting-stations');
+}
+
+export async function getRecipes(stationId?: string): Promise<Recipe[]> {
+  return getContent<Recipe[]>('recipes', stationId ? { stationId } : {});
+}
+
+export async function getInventory(): Promise<InventoryItem[]> {
+  return getContent<InventoryItem[]>('inventory');
+}
+
+export async function craft(recipeId: string): Promise<{ success: true }> {
+  await applyIntent('craft', { recipeId });
   return { success: true };
 }
 
-export async function getPvpZones() {
-  return pvpZones;
+export async function getPvpZones(): Promise<PvPZone[]> {
+  return getContent<PvPZone[]>('pvp-zones');
 }
 
-export async function getPvpStats() {
-  return pvpStats;
+export async function getPvpStats(): Promise<PvPStats> {
+  return getContent<PvPStats>('pvp-stats');
 }
 
-export async function getCombatLog() {
-  return combatLog;
+export async function getCombatLog(): Promise<LogEntry[]> {
+  return getContent<LogEntry[]>('combat-log');
 }
 
-export async function combatAction() {
+export async function combatAction(
+  zoneId: string,
+  action: 'attack' | 'defend' | 'flee',
+): Promise<{ success: true; message: string }> {
+  await applyIntent('combat_action', { zoneId, action });
   return { success: true, message: 'Action performed.' };
 }
 
-export async function getGuild() {
-  return guild;
+export async function getGuild(): Promise<Guild> {
+  return getContent<Guild>('guild');
 }
 
-export async function getGuildMembers() {
-  return guildMembers;
+export async function getGuildMembers(): Promise<GuildMember[]> {
+  return getContent<GuildMember[]>('guild-members');
 }
 
-export async function getGuildAlliances() {
-  return guildAlliances;
+export async function getGuildAlliances(): Promise<Alliance[]> {
+  return getContent<Alliance[]>('guild-alliances');
 }
 
-export async function guildAction() {
-  return { success: true, message: 'Guild action performed.' };
-}
-
-export async function getRegions() {
-  return regions;
-}
-
-export async function getCurrentRegion() {
-  return currentRegion;
-}
-
-export async function getRegionActivities(regionId: string) {
-  if (regionId === 'capital') return activitiesCapital;
-  if (regionId === 'forest') return activitiesForest;
-  if (regionId === 'mountains') return activitiesMountains;
-  return [];
-}
-
-export async function travel(regionId: string) {
-  void regionId; // suppress unused warning
+export async function guildAction(action: 'invite' | 'promote' | 'kick' | 'message'): Promise<{ success: true }> {
+  await applyIntent('guild_action', { action });
   return { success: true };
 }
 
-export async function getMarketListings(search: string = '') {
-  return marketListings.filter(l => l.item.toLowerCase().includes(search.toLowerCase()));
+export async function getRegions(): Promise<Region[]> {
+  return getContent<Region[]>('regions');
 }
 
-export async function marketBuy(listingId: string, quantity: number) {
-  void listingId; // suppress unused warning
-  void quantity;
-  return { success: true, message: 'Purchase successful.' };
+export async function getCurrentRegion(): Promise<Region> {
+  return getContent<Region>('current-region');
+}
+
+export async function getRegionActivities(regionId: string): Promise<Activity[]> {
+  return getContent<Activity[]>('region-activities', { regionId });
+}
+
+export async function travel(regionId: string): Promise<{ success: true }> {
+  await applyIntent('travel', { regionId });
+  return { success: true };
+}
+
+export async function getMarketListings(search: string = ''): Promise<Listing[]> {
+  return getContent<Listing[]>('market-listings', search ? { search } : {});
+}
+
+export async function marketBuy(listingId: string, quantity: number): Promise<{ success: true }> {
+  await applyIntent('market_buy', { listingId, quantity });
+  return { success: true };
+}
+
+export async function getSkills(): Promise<SkillCategory[]> {
+  return getContent<SkillCategory[]>('skills');
+}
+
+export async function upgradeSkill(skillName: string): Promise<SkillCategory[]> {
+  await applyIntent('upgrade_skill', { skillName });
+  return getSkills();
 }

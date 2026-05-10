@@ -8,22 +8,40 @@ import GuildsTab from '../guilds/GuildsTab';
 import WorldMapTab from '../worldmap/WorldMapTab';
 import MarketTab from '../market/MarketTab';
 import SkillsTab from '../skills/SkillsTab';
+import type { MmoProfile } from '../../api/handlers';
 
 interface GameContentProps {
   currentTab: GameTab;
+  profile: MmoProfile;
 }
 
-const GameContent: React.FC<GameContentProps> = ({ currentTab }) => {
+const GameContent: React.FC<GameContentProps> = ({ currentTab, profile }) => {
   return (
     <main className="game-content p-4">
       {(() => {
         switch (currentTab) {
           case 'dashboard':
-            return <DashboardTab />;
+            return (
+              <DashboardTab
+                activities={profile.activities}
+                stats={[
+                  { stat: 'Level', value: profile.resources.level },
+                  { stat: 'Gold', value: profile.resources.gold },
+                  { stat: 'Energy', value: profile.resources.energy },
+                ]}
+                events={profile.events}
+              />
+            );
           case 'character':
-            return <CharacterTab />;
+            return (
+              <CharacterTab
+                characterName={profile.character.name}
+                attributes={profile.attributes}
+                equipment={profile.equipment}
+              />
+            );
           case 'skills':
-            return <SkillsTab />;
+            return <SkillsTab categories={profile.skills} />;
           case 'crafting':
             return <CraftingTab />;
           case 'pvp':

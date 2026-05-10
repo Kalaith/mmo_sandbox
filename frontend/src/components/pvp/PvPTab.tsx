@@ -30,7 +30,7 @@ const PvPTab: React.FC = () => {
   const [stats, setStats] = useState<PvPStatsType | null>(null);
   const [combatLog, setCombatLog] = useState<CombatLogEntry[]>([]);
 
-  useEffect(() => {
+  const loadCombatState = () => {
     getPvpZones()
       .then(setZones)
       .catch(() => setZones([]));
@@ -40,6 +40,10 @@ const PvPTab: React.FC = () => {
     getCombatLog()
       .then(setCombatLog)
       .catch(() => setCombatLog([]));
+  };
+
+  useEffect(() => {
+    loadCombatState();
   }, []);
 
   return (
@@ -52,7 +56,7 @@ const PvPTab: React.FC = () => {
       </div>
       <div className="w-full md:w-2/5">
         <CombatSimulator zoneId={selectedZone} />
-        <CombatActions zoneId={selectedZone} />
+        <CombatActions zoneId={selectedZone} onActionComplete={loadCombatState} />
       </div>
       <div className="w-full md:w-1/5">
         <CombatLog log={combatLog} />

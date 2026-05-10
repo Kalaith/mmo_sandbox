@@ -3,19 +3,25 @@ import GameHeader from './GameHeader';
 import GameNav from './GameNav';
 import type { GameTab } from './GameNav';
 import GameContent from './GameContent';
+import type { MmoProfile } from '../../api/handlers';
 
 interface GameInterfaceProps {
-  characterName: string;
+  profile: MmoProfile;
 }
 
-const GameInterface: React.FC<GameInterfaceProps> = ({ characterName }) => {
+const GameInterface: React.FC<GameInterfaceProps> = ({ profile }) => {
   const [currentTab, setCurrentTab] = useState<GameTab>('dashboard');
 
   return (
     <div className="game-container">
-      <GameHeader characterName={characterName} />
+      <GameHeader
+        characterName={profile.character.name}
+        gold={profile.resources.gold}
+        energy={profile.resources.energy}
+        skillPoints={profile.resources.skillPoints}
+      />
       <GameNav currentTab={currentTab} onTabChange={setCurrentTab} />
-      <GameContent currentTab={currentTab} />
+      <GameContent currentTab={currentTab} profile={profile} />
     </div>
   );
 };

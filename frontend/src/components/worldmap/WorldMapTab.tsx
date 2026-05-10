@@ -44,8 +44,7 @@ const WorldMapTab: React.FC = () => {
     try {
       const data = await travel(regionId);
       if (data.success) {
-        const newRegion = regions.find(r => r.id === regionId) || null;
-        setCurrentRegion(newRegion);
+        setCurrentRegion(await getCurrentRegion());
       }
     } catch {
       // Optionally show error to user
@@ -55,8 +54,16 @@ const WorldMapTab: React.FC = () => {
   return (
     <div className="flex flex-col md:flex-row gap-4 p-4">
       <div className="w-full md:w-1/4">
-        <MapView regions={regions} currentRegion={currentRegion} onSelect={setCurrentRegion} />
-        <RegionsList regions={regions} currentRegion={currentRegion} onSelect={setCurrentRegion} />
+        <MapView
+          regions={regions}
+          currentRegion={currentRegion}
+          onSelect={region => void handleTravel(region.id)}
+        />
+        <RegionsList
+          regions={regions}
+          currentRegion={currentRegion}
+          onSelect={region => void handleTravel(region.id)}
+        />
       </div>
       <div className="w-full md:w-1/4">
         <CurrentLocation region={currentRegion} />

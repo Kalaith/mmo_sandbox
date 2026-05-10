@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface CharacterCreationModalProps {
-  onCreate: (name: string) => void;
+  onCreate: (name: string) => void | Promise<void>;
+  error?: string | null;
 }
 
-const CharacterCreationModal: React.FC<CharacterCreationModalProps> = ({ onCreate }) => {
+const CharacterCreationModal: React.FC<CharacterCreationModalProps> = ({ onCreate, error }) => {
   const [name, setName] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    const savedName = localStorage.getItem('characterName');
-    if (savedName) setName(savedName);
-  }, []);
-
-  const handleCreate = () => {
-    if (name) {
-      onCreate(name);
-      localStorage.setItem('characterName', name);
+  const handleCreate = async () => {
+    if (name.trim()) {
+      setIsSubmitting(true);
+      try {
+        await onCreate(name.trim());
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -36,12 +37,13 @@ const CharacterCreationModal: React.FC<CharacterCreationModalProps> = ({ onCreat
             onChange={e => setName(e.target.value)}
           />
         </div>
+        {error && <p className="text-sm text-red-600 mb-3">{error}</p>}
         <button
           className="w-full bg-blue-600 border border-blue-800 text-white font-bold tracking-wider uppercase py-2 rounded hover:bg-blue-700 transition"
           onClick={handleCreate}
-          disabled={!name.trim()}
+          disabled={!name.trim() || isSubmitting}
         >
-          Enter the World
+          {isSubmitting ? 'Entering...' : 'Enter the World'}
         </button>
       </div>
     </div>

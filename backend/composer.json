@@ -1,0 +1,25 @@
+{
+  "name": "webhatchery/mmo-sandbox-backend",
+  "description": "Mmo Sandbox WebHatchery backend",
+  "type": "project",
+  "require": {
+    "php": "^8.1",
+    "firebase/php-jwt": "^7.0",
+    "vlucas/phpdotenv": "^5.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "scripts": {
+    "start": "php -S 0.0.0.0:8080 -t public",
+    "test": "php scripts/check-syntax.php",
+    "cs-check": "php scripts/check-syntax.php",
+    "cs-fix": "php scripts/check-syntax.php"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0",
+    "squizlabs/php_codesniffer": "^3.7"
+  }
+}
